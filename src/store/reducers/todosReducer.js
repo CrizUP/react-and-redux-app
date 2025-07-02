@@ -2,7 +2,7 @@ import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER } from "../actions/actions
 
 let inicialState = [];
 
-const todosReducer = (state = inicialState, action) => {
+export const todosReducer = (state = inicialState, action) => {
     switch (action.type) {
         case ADD_TODO:
             return [
@@ -20,8 +20,6 @@ const todosReducer = (state = inicialState, action) => {
                     completed: !todo.completed } 
                     : todo
             );
-        case SET_VISIBILITY_FILTER:
-            return state; // This action does not change the todos, just the filter
         default:
             return state;
     }
