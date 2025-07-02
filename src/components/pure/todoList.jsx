@@ -1,16 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const TodoList = ({todos, onClick}) => {
+import Todo from './todo';
+const TodoList = ({ todos, onTodoClick }) => {
     return (
         <div>
-            <h1>Todo List</h1>
+            <h1>Your Todo List</h1>
             <ul>
-                <li>Todo 1</li>
-                <li>Todo 2</li>
-                <li>Todo 3</li>
+                {todos.map((todo, index) => (
+                    <Todo
+                        key={index}
+                        onClick={() => onTodoClick(todo.id)}
+                        completed={todo.completed}
+                        text={todo.text}
+                        id={todo.id}
+                    />
+                ))}
             </ul>
-            <input type="text" placeholder="Add a new todo" />
-            <button>Add Todo</button>
+            {/* <input type="text" placeholder="Add a new todo" />
+            <button>Add Todo</button> */}
         </div>
     );
 }
@@ -22,7 +29,7 @@ TodoList.propTypes = {
             completed: PropTypes.bool.isRequired
         }).isRequired
     ).isRequired,
-    onClick: PropTypes.func.isRequired
+    onTodoClick: PropTypes.func.isRequired
 };
 
 export default TodoList;
